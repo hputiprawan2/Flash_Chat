@@ -49,6 +49,10 @@ class ChatViewController: UIViewController {
                             // Trying to update tableView inside the closure, working in the background
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
+                                
+                                // Scroll to the bottom when enter a new message
+                                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
                             }
                             
                         }
