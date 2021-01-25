@@ -32,8 +32,11 @@ class ChatViewController: UIViewController {
     }
     
     func loadMessages() {
-        messages = []
-        db.collection(K.FStore.collectionName).getDocuments { [self] (querySnapshot, error) in
+        
+        db.collection(K.FStore.collectionName).addSnapshotListener { [self] (querySnapshot, error) in
+            
+            messages = []
+            
             if let e = error {
                 print("There was an issue retrieving data from Firestore \(e).")
             } else {
